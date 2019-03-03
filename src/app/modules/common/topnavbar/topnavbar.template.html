@@ -1,0 +1,18 @@
+<!-- top navigation -->
+<header class="top_nav">
+
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand mr-auto mr-lg-0" routerLink="">My Store</a>      
+      <div>
+        <a *ngIf="user && user.isAdmin()" class="navbar-brand mr-auto mr-lg-0" [routerLink]="['/users']">Customers</a>
+        <a class="navbar-brand mr-auto mr-lg-0 ml-3" [routerLink]="['/orders']">Orders</a>
+        <a *ngIf="user && user.isAdmin()" class="navbar-brand mr-auto mr-lg-0 ml-3" [routerLink]="['/users/'+user._id+'/orders']">My Orders</a>
+        <a *ngIf="user && user.isAdmin()" class="navbar-brand mr-auto mr-lg-0 ml-3" [routerLink]="['/stats']">Stats</a>
+      </div>
+      <div *ngIf="user">Hi {{user.first_name}}, (<span (click)="logout()" class="underline pointer">logout</span>)</div>  
+    </div>
+  </nav>
+
+</header>
+<!-- /top navigation -->

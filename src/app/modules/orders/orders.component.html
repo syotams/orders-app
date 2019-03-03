@@ -1,0 +1,23 @@
+<div class="container">
+	<app-component-header [title]="'Orders'" [route]="'orders'"></app-component-header>
+
+	<table class="table">
+		<thead>
+			<th>ID</th>
+			<th>User</th>
+			<th>Total</th>
+			<th>Status</th>
+			<th>Created At</th>
+		</thead>
+		<tbody *ngIf="orders.length">
+			<tr *ngFor="let order of orders">
+				<td><a routerLink="/orders/{{order._id}}">{{order._id}}</a></td>
+				<td>{{order.user.first_name}} {{order.user.last_name}}</td>
+				<td>{{order.calcTotalPrice()}}</td>
+				<td>{{order.status}}</td>
+				<td>{{order.created_at | date:'medium'}}
+			</tr>
+		</tbody>
+	</table>
+
+</div>

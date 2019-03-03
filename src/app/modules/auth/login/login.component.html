@@ -1,0 +1,15 @@
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="row col-4 form-group">
+			<label for="email" class="control-label">Email</label>
+			<input type="email" name="email" [(ngModel)]="email" id="email" class="form-control" />
+		</div>
+	</div>
+
+	<div class="row justify-content-center">
+		<div class="col-4">
+			<button (click)="login()" class="btn btn-success">Sign in</button>
+			<a routerLink="/signup" class="ml-2">Sign up</a>
+		</div>
+	</div>
+</div>

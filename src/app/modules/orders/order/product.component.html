@@ -1,0 +1,9 @@
+<div class="row col mb-2 mt-1">
+	<input class="col form-control mr-1" type="text" name="name" [(ngModel)]="product.name" placeholder="Name">
+	<input class="col form-control" type="text" name="name" [(ngModel)]="product.price" placeholder="Price">	
+</div>	
+<div class="row">
+	<div class="col-2">
+		<button class="btn btn-success" (click)="add()" *ngIf="shouldDisplayAddButton">Add Product</button>	
+	</div>
+</div>

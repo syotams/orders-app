@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+$appBlue: #373a5e;
+$appCyan: #80e4cc;
+$bgGray1: #ebebee;
+
+body {
+  padding-top: 70px;
+}
+a, a:hover, a:visied, a:focus {
+  color: #ccc;
+}
+nav {border-bottom: solid 1px #f1f1f1; background-color: white}
+footer {
+  margin-top: 100px;
+  height: 50px;
+  width: 100%;
+}

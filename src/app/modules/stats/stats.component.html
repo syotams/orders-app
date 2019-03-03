@@ -1,0 +1,20 @@
+<div class="container">
+
+	<h1 class="mb-4">Stats</h1>
+
+	<table class="table">
+		<thead>
+			<th>ID</th>
+			<th>User</th>
+			<th>Total Orders From Beginning of Day</th>
+		</thead>
+		<tbody *ngIf="stats.length">
+			<tr *ngFor="let item of stats">
+				<td>{{item._id._id}}</td>
+				<td>{{item._id.first_name}} {{item._id.last_name}}</td>
+				<td>{{item.count}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

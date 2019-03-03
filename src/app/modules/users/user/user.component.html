@@ -1,0 +1,48 @@
+<div class="container">
+
+	<div class="mb-5">
+		<h1 *ngIf="user._id; else create">Update Customer</h1>
+		<ng-template #create>
+			<h1>Create Customer</h1>
+		</ng-template>
+	</div>
+
+	<div class="row">
+		<div class="row col-12 form-group">
+			<label for="first_name" class="control-label col-2">First Name</label>
+			<div class="col-10">
+				<input [(ngModel)]="user.first_name" name="first_name" type="text" id="first_name" class="form-control" />
+			</div>
+			<div *ngIf="errors.first_name" class="col-12 text-danger">{{errors.first_name.message}}</div>
+		</div>
+		<div class="row col-12 form-group">
+			<label for="last_name" class="control-label col-2">Last Name</label>
+			<div class="col-10">
+				<input [(ngModel)]="user.last_name" name="last_name" type="text" id="last_name" class="form-control" />
+			</div>
+		</div>
+		<div class="row col-12 form-group">
+			<label for="email" class="control-label col-2">Email</label>
+			<div class="col-10">
+				<input [(ngModel)]="user.email" name="email" type="email" id="email" class="form-control" />
+			</div>
+		</div>
+		<div class="row col-12 form-group">
+			<label for="role" class="control-label col-2">Role</label>
+			<mat-form-field>
+			  <mat-select [(value)]="user.role">
+			    <mat-option value="user">User</mat-option>
+			    <mat-option value="admin">Admin</mat-option>
+			  </mat-select>
+			</mat-form-field>
+		</div>
+	</div>
+
+	<div class="row justify-content-end">
+		<div class="col-2">
+			<button class="btn btn-success mr-1" (click)="save()">Save</button>
+			<button class="btn btn-light" (click)="cancel()">Cancel</button>
+		</div>
+	</div>
+
+</div>

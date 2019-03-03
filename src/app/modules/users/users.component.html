@@ -1,0 +1,22 @@
+<div class="container">
+	<app-component-header [title]="'Customers'" [route]="'users'"></app-component-header>
+
+	<table class="table">
+		<thead>
+			<th>Full Name</th>
+			<th>Email</th>
+			<th>Actions</th>
+		</thead>
+		<tbody *ngIf="users.length">
+			<tr *ngFor="let user of users">
+				<td><a routerLink="/users/{{user._id}}">{{user.first_name}} {{user.last_name}}</a></td>
+				<td>{{user.email}}</td>
+				<td>
+					<button class="btn btn-success" (click)="orders(user._id)">Orders</button>
+					<button class="btn btn-danger ml-1" (click)="archive(user._id)">Archive</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+</div>

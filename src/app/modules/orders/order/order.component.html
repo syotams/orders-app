@@ -1,0 +1,72 @@
+<div class="container">
+
+	<div class="mb-5">
+		<h1 *ngIf="order._id; else create">Update Order</h1>
+		<ng-template #create>
+			<h1>Create Order</h1>
+		</ng-template>
+	</div>
+
+	<div class="row">
+		<div class="row col-12 form-group">
+			<label for="customer" class="control-label col-2">Customer</label>
+			<div class="col-10" *ngIf="order.user && order.user._id; else suggest">
+				{{order.user.first_name}} {{order.user.last_name}} &lt;{{order.user.email}}&gt;
+			</div>
+			<ng-template #suggest>
+				<div class="col-10">					
+					<form class="example-form" [formGroup]='usersForm'>
+					  <mat-form-field class="example-full-width">
+					    <input matInput placeholder="Choose a user" [matAutocomplete]="auto" formControlName='userInput'>
+					  </mat-form-field>
+					  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+					    <mat-option *ngIf="isSearchLoading" class="is-loading"><mat-spinner diameter="50"></mat-spinner></mat-option>
+					    <ng-container *ngIf="!isSearchLoading">
+					      <mat-option *ngFor="let user of filteredUsers" [value]="user">
+					        <span>{{ user.first_name }}</span>
+					        <small> ({{user.email}})</small>
+					      </mat-option>
+					    </ng-container>
+					  </mat-autocomplete>
+					</form>
+
+				</div>
+			</ng-template>
+		</div>
+		<div class="row col-12 form-group">
+			<label for="address" class="control-label col-2">Address</label>
+			<div class="col-10">
+				<input [(ngModel)]="order.address" name="address" type="text" id="address" class="form-control" />
+			</div>
+		</div>
+		<div class="row col-12 form-group">
+			<label for="status" class="control-label col-2">Status</label>
+			<div class="col-10">
+				<mat-form-field>
+				  <mat-select [(value)]="order.status">
+				    <mat-option value="Created">Created</mat-option>
+				    <mat-option value="Delivered">Delivered</mat-option>
+				    <mat-option value="Closed">Closed</mat-option>
+				    <mat-option value="Archived">Archived</mat-option>
+				  </mat-select>
+				</mat-form-field>
+			</div>
+		</div>
+	</div>
+
+	<div>		
+		<div>Products</div>
+		<app-product *ngFor="let product of order.products" [product]="product"></app-product>
+		<app-product (productAdded)="onProductAdded($event)" [shouldDisplayAddButton]=true></app-product>
+	</div>
+
+	<div class="row justify-content-end">
+		<div class="col-2">
+			<button class="btn btn-success mr-1" 
+			(click)="save()" 
+			[disabled]="!order.user && usersForm.get('userInput').value==null">Save</button>
+			<button class="btn btn-light" (click)="cancel()">Cancel</button>
+		</div>
+	</div>
+
+</div>
